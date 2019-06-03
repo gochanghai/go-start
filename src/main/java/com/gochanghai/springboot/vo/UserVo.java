@@ -1,25 +1,23 @@
-package com.gochanghai.springboot.dto;
+package com.gochanghai.springboot.vo;
 
 import com.gochanghai.springboot.enums.StatusEnum;
 import com.gochanghai.springboot.enums.UserTypeEnum;
 import lombok.Data;
 
 @Data
-public class UserDTO {
+public class UserVo {
+
+    private Long id;
+
     /**
      * 用户名
      */
-    private String username;
+    private String name;
 
     /**
      * 手机号
      */
     private String phone;
-
-    /**
-     * 密码
-     */
-    private String password;
 
     /**
      * 昵称
@@ -30,6 +28,11 @@ public class UserDTO {
      * 头像
      */
     private String headimgurl;
+
+    /**
+     * 年龄
+     */
+    private Integer userAge;
 
     /**
      * 微信
