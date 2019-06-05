@@ -10,45 +10,36 @@ spring:
     username: root
     password: root
     druid:
-      # Á¬½Ó³ØµÄÅäÖÃĞÅÏ¢
-      # ³õÊ¼»¯´óĞ¡£¬×îĞ¡£¬×î´ó
+      # ï¿½ï¿½ï¿½Ó³Øµï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ï¢
+      # ï¿½ï¿½Ê¼ï¿½ï¿½ï¿½ï¿½Ğ¡ï¿½ï¿½ï¿½ï¿½Ğ¡ï¿½ï¿½ï¿½ï¿½ï¿½
       initial-size: 5
       min-idle: 5
       maxActive: 20
-      # ÅäÖÃ»ñÈ¡Á¬½ÓµÈ´ı³¬Ê±µÄÊ±¼ä
+      # ï¿½ï¿½ï¿½Ã»ï¿½È¡ï¿½ï¿½ï¿½ÓµÈ´ï¿½ï¿½ï¿½Ê±ï¿½ï¿½Ê±ï¿½ï¿½
       maxWait: 60000
-      # ÅäÖÃ¼ä¸ô¶à¾Ã²Å½øĞĞÒ»´Î¼ì²â£¬¼ì²âĞèÒª¹Ø±ÕµÄ¿ÕÏĞÁ¬½Ó£¬µ¥Î»ÊÇºÁÃë
+      # ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½ï¿½ï¿½Ã²Å½ï¿½ï¿½ï¿½Ò»ï¿½Î¼ï¿½â£¬ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½Ø±ÕµÄ¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ó£ï¿½ï¿½ï¿½Î»ï¿½Çºï¿½ï¿½ï¿½
       timeBetweenEvictionRunsMillis: 60000
-      # ÅäÖÃÒ»¸öÁ¬½ÓÔÚ³ØÖĞ×îĞ¡Éú´æµÄÊ±¼ä£¬µ¥Î»ÊÇºÁÃë
+      # ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ú³ï¿½ï¿½ï¿½ï¿½ï¿½Ğ¡ï¿½ï¿½ï¿½ï¿½ï¿½Ê±ï¿½ä£¬ï¿½ï¿½Î»ï¿½Çºï¿½ï¿½ï¿½
       minEvictableIdleTimeMillis: 300000
       validationQuery: SELECT 1 FROM DUAL
       testWhileIdle: true
       testOnBorrow: false
       testOnReturn: false
-      # ´ò¿ªPSCache£¬²¢ÇÒÖ¸¶¨Ã¿¸öÁ¬½ÓÉÏPSCacheµÄ´óĞ¡
+      # ï¿½ï¿½PSCacheï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¸ï¿½ï¿½Ã¿ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½PSCacheï¿½Ä´ï¿½Ğ¡
       poolPreparedStatements: true
       maxPoolPreparedStatementPerConnectionSize: 20
-      # ÅäÖÃ¼à¿ØÍ³¼ÆÀ¹½ØµÄfilters£¬È¥µôºó¼à¿Ø½çÃæsqlÎŞ·¨Í³¼Æ£¬'wall'ÓÃÓÚ·À»ğÇ½
+      # ï¿½ï¿½ï¿½Ã¼ï¿½ï¿½Í³ï¿½ï¿½ï¿½ï¿½ï¿½Øµï¿½filtersï¿½ï¿½È¥ï¿½ï¿½ï¿½ï¿½ï¿½Ø½ï¿½ï¿½ï¿½sqlï¿½Ş·ï¿½Í³ï¿½Æ£ï¿½'wall'ï¿½ï¿½ï¿½Ú·ï¿½ï¿½ï¿½Ç½
       #      filters: stat,wall,log4j
-      # Í¨¹ıconnectPropertiesÊôĞÔÀ´´ò¿ªmergeSql¹¦ÄÜ£»ÂıSQL¼ÇÂ¼
+      # Í¨ï¿½ï¿½connectPropertiesï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½mergeSqlï¿½ï¿½ï¿½Ü£ï¿½ï¿½ï¿½SQLï¿½ï¿½Â¼
       connectionProperties: druid.stat.mergeSql\=true;druid.stat.slowSqlMillis\=5000
-      # ÅäÖÃDruidStatFilter
       web-stat-filter:
         enabled: true
         url-pattern: "/*"
         exclusions: "*.js,*.gif,*.jpg,*.bmp,*.png,*.css,*.ico,/druid/*"
-      # ÅäÖÃDruidStatViewServlet
       stat-view-servlet:
         url-pattern: "/druid/*"
-        # IP°×Ãûµ¥(Ã»ÓĞÅäÖÃ»òÕßÎª¿Õ£¬ÔòÔÊĞíËùÓĞ·ÃÎÊ)
-        #allow: 127.0.0.1,192.168.163.1
-        # IPºÚÃûµ¥ (´æÔÚ¹²Í¬Ê±£¬denyÓÅÏÈÓÚallow)
-        #deny: 192.168.1.73
-        #  ½ûÓÃHTMLÒ³ÃæÉÏµÄ¡°Reset All¡±¹¦ÄÜ
         reset-enable: false
-        # µÇÂ¼Ãû
         login-username: admin
-        # µÇÂ¼ÃÜÂë
         login-password: 123456
 
   jackson:
@@ -66,20 +57,14 @@ mail:
     addr: gochanghai@aliyun.com
 
 mybatis-plus:
-  mapper-locations: classpath:mapper/*.xml
+  mapper-locations: classpath*:/mapper/**/*.xml
   type-aliases-package: com.gochanghai.springboot.entity
   type-enums-package: com.gochanghai.springboot.enums
   global-config:
-    # Ë¢ĞÂmapper µ÷ÊÔÉñÆ÷
     db-config:
-      # Ö÷¼üÀàĞÍ  0:"Êı¾İ¿âID×ÔÔö", 1:"ÓÃ»§ÊäÈëID",2:"È«¾ÖÎ¨Ò»ID (Êı×ÖÀàĞÍÎ¨Ò»ID)", 3:"È«¾ÖÎ¨Ò»ID UUID";
       id-type: auto
-      # ×Ö¶Î²ßÂÔ 0:"ºöÂÔÅĞ¶Ï",1:"·Ç NULL ÅĞ¶Ï"),2:"·Ç¿ÕÅĞ¶Ï"
       field-strategy: 2
-      # Êı¾İ¿â´óĞ´ÏÂ»®Ïß×ª»»
       capital-mode: true
-      # ÍÕ·åÏÂ»®Ïß×ª»»
       column-underline: true
-      #Âß¼­É¾³ıÅäÖÃ
       logic-delete-value: 1
       logic-not-delete-value: 0

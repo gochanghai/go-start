@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
@@ -25,7 +26,9 @@ public class EmailTool {
     @Value("${spring.mail.username}")
     private String senderMailAddress;
 
+    @Async
     public void sendMailTemplate(Map<String, Object> valueMap){
+        System.out.println("发送邮件{}");
         MimeMessage mimeMessage = null;
         try {
             mimeMessage = mailSender.createMimeMessage();

@@ -21,8 +21,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public Page<UserVo> findAll(Page<UserVo> page) {
-        User user = new User();
-//        List<User> users = user.selectAll();
         return (Page<UserVo>) page.setRecords(userMapper.findAll(page));
     }
 

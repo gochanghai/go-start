@@ -43,7 +43,9 @@ public class SpringbootApplicationTests {
         valueMap.put("name", "领筑");
         valueMap.put("email", "942059473@qq.com");
         valueMap.put("id","100000");
+        System.out.println("开始发送");
         emailTool.sendMailTemplate(valueMap);
+        System.out.println("已发送");
     }
 
     public void sendHtmlMail(String to, String subject, String content){
