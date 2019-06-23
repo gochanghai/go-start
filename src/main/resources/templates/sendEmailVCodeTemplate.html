@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${title}"/>
+</head>
+<body>
+<div style="width: 100%;">
+    <div style="margin: 0 auto;max-width: 700px; font-size: 14px;">
+        <div style="text-align: center;margin: 40px;"><img
+                src="http://192.168.1.37:23000//file/downloadFile?fileUrl=/usr/local/upload/b708390b-0a91-4261-9735-26fe54b04eba.png&suffix=.png">
+        </div>
+        <h2 style="text-align: center; color: rgb(232, 65, 51)" th:text="'领筑金融云邮箱验证码'"></h2>
+        <p><b th:text="'Hi,'+${email}"></b></p>
+        <p th:text="'验证码' + ${vcode}+'用于修改邮箱账号，请勿将验证码告诉他人，30分钟内有效。'"></p>
+        <p style="font-size: 12px; margin: 40px 0;">本邮件由系统自动发送，请勿回复。任何疑问或建议，欢迎联系客服邮箱lijiawen@zhihuikg.com</p>
+    </div>
+</div>
+</body>
+</html>

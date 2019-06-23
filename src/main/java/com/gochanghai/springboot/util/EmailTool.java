@@ -63,4 +63,33 @@ public class EmailTool {
             e.printStackTrace();
         }
     }
+
+    /**
+     * 发送邮箱验证码
+     * @param valueMap
+     */
+    @Async
+    public void sendMailVCodeTemplate(Map<String, Object> valueMap){
+        MimeMessage mimeMessage = null;
+        try {
+            mimeMessage = mailSender.createMimeMessage();
+            MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true);
+            // 设置发件人邮箱
+            helper.setFrom(senderMailAddress);
+            // 设置收件人邮箱
+            helper.setTo((String[])valueMap.get("to"));
+            // 设置邮件标题
+            helper.setSubject(valueMap.get("title").toString());
+            // 添加正文（使用thymeleaf模板）
+            Context context = new Context();
+            context.setVariables(valueMap);
+            String content = this.templateEngine.process(valueMap.get("template").toString(), context);
+            helper.setText(content, true);
+            // 发送邮件
+            mailSender.send(mimeMessage);
+
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        }
+    }
 }
