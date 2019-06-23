@@ -1,6 +1,12 @@
 package com.gochanghai.springboot;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.gochanghai.springboot.entity.Department;
+import com.gochanghai.springboot.mapper.DepartmentMapper;
 import com.gochanghai.springboot.util.EmailTool;
+import org.apache.shiro.crypto.hash.SimpleHash;
+import org.apache.shiro.util.ByteSource;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,10 +19,12 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.thymeleaf.TemplateEngine;
 import org.thymeleaf.context.Context;
 
+import javax.annotation.Resource;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 import java.io.File;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 @RunWith(SpringRunner.class)
@@ -99,6 +107,29 @@ public class SpringbootApplicationTests {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+    }
+
+    @Resource
+    private DepartmentMapper departmentMapper;
+    @Test
+    public void testDept() {
+        LambdaQueryWrapper<Department> lambda = new QueryWrapper<Department>().lambda();
+        lambda.eq(Department::getParentId,1L).orderByDesc(Department::getId);
+        List<Department> departments = departmentMapper.selectList(lambda);
+        System.out.println("已发送" + departments.toString());
+        if(departments.size()>0){
+            System.out.println(departments.get(0).toString());
+        }
+    }
+
+    @Test
+    public void password2MD5(){
+        String hashAlgorithName = "MD5";
+        String password = "登录时输入的密码";
+        int hashIterations = 1024;//加密次数
+        ByteSource credentialsSalt = ByteSource.Util.bytes("登录时输入的用户名");
+        Object obj = new SimpleHash(hashAlgorithName, password, credentialsSalt, hashIterations);
+        System.out.println(obj);
     }
 
 }
