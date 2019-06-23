@@ -9,9 +9,12 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Profile;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+/**
+ * MybatisPlus 配置类
+ */
 @EnableTransactionManagement
 @SpringBootConfiguration
-public class MyBatisPlusConfiguration {
+public class MyBatisPlusConfig {
 
     /**
      * 逻辑删除
