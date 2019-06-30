@@ -1,4 +1,4 @@
-package com.gochanghai.springboot.config;
+package com.gochanghai.springboot.config.commons;
 
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +20,7 @@ public class Swagger2Config {
                 .apiInfo(apiInfo())
                 .select()
                 // 指定controller存放的目录路径
-                .apis(RequestHandlerSelectors.basePackage("com.zhjs.scfcloud.system.controller"))
+                .apis(RequestHandlerSelectors.basePackage("com.gochanghai.springboot.controller"))
                 .paths(PathSelectors.any())
                 .build();
     }
@@ -30,8 +30,8 @@ public class Swagger2Config {
                 // 文档标题
                 .title("领筑金融云")
                 // 文档描述
-                .description("https://github.com.zhjs.scfcloud")
-                .termsOfServiceUrl("https://github.com.zhjs.scfcloud")
+                .description("https://github.com.gochanghai.springboot")
+                .termsOfServiceUrl("https://github.com.gochanghai.loTCloud")
                 .version("v0.1.0")
                 .build();
     }

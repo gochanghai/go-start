@@ -1,4 +1,4 @@
-package com.gochanghai.springboot.config;
+package com.gochanghai.springboot.config.commons;
 
 import com.baomidou.mybatisplus.core.injector.ISqlInjector;
 import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;

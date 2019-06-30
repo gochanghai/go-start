@@ -1,4 +1,4 @@
-package com.gochanghai.springboot.config;
+package com.gochanghai.springboot.config.commons;
 
 import org.apache.shiro.authc.AuthenticationInfo;
 import org.apache.shiro.authc.AuthenticationToken;

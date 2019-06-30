@@ -1,4 +1,4 @@
-package com.gochanghai.springboot.config;
+package com.gochanghai.springboot.config.commons;
 
 import com.gochanghai.springboot.entity.User;
 import com.gochanghai.springboot.service.UserService;
@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
 import java.util.HashSet;
+
 
 public class AuthRealm extends AuthorizingRealm {
 
@@ -76,6 +77,7 @@ public class AuthRealm extends AuthorizingRealm {
         String userName  = usernamePasswordToken.getUsername();
         //根据用户名查询数据库中对应的记录
         User user = userService.findByUsername(userName);
+        System.out.println(user.toString());
         //当前realm对象的name
         String realmName = getName();
         //盐值

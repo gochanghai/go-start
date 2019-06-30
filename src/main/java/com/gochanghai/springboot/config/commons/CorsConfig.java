@@ -1,4 +1,4 @@
-package com.gochanghai.springboot.config;
+package com.gochanghai.springboot.config.commons;
 
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.context.annotation.Bean;

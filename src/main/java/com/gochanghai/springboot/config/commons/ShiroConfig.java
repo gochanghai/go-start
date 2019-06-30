@@ -1,9 +1,9 @@
-package com.gochanghai.springboot.config;
+package com.gochanghai.springboot.config.commons;
 
-import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.cache.CacheManager;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
+import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.spring.LifecycleBeanPostProcessor;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -49,18 +49,17 @@ public class ShiroConfig {
 
     /**
      * 若不使用MD5加密 则打开
-     */
-//    @Bean("authRealm")
-//    @DependsOn("lifecycleBeanPostProcessor")//可选
-//    public AuthRealm authRealm(@Qualifier("credenttiaMatcher") CredenttiaMatcher matcher) {
-//        AuthRealm authRealm = new AuthRealm();
-//        authRealm.setCredentialsMatcher(matcher);
-//        return authRealm;
-//    }
+     *//**
+    @Bean("authRealm")
+    @DependsOn("lifecycleBeanPostProcessor")//可选
+    public AuthRealm authRealm(@Qualifier("credenttiaMatcher") CredenttiaMatcher matcher) {
+        AuthRealm authRealm = new AuthRealm();
+        authRealm.setCredentialsMatcher(matcher);
+        return authRealm;
+    }*/
 
     /**
      * 定义安全管理器securityManager,注入自定义的realm
-     * @param authRealm
      * @return
      */
     @Bean("securityManager")
@@ -84,19 +83,19 @@ public class ShiroConfig {
         //可以写路由也可以写jsp页面的访问路径
         bean.setLoginUrl("/login");
         //设置登录成功跳转的页面
-        bean.setSuccessUrl("/pages/index.jsp");
+//        bean.setSuccessUrl("/pages/index.jsp");
         //设置未授权跳转的页面
-        bean.setUnauthorizedUrl("/pages/unauthorized.jsp");
+//        bean.setUnauthorizedUrl("/pages/unauthorized.jsp");
         //定义过滤器
         LinkedHashMap<String, String> filterChainDefinitionMap = new LinkedHashMap<>();
-        filterChainDefinitionMap.put("/index", "authc");
+//        filterChainDefinitionMap.put("/index", "authc");
         filterChainDefinitionMap.put("/login", "anon");
-        filterChainDefinitionMap.put("/loginUser", "anon");
-        filterChainDefinitionMap.put("/admin", "roles[admin]");
-        filterChainDefinitionMap.put("/edit", "perms[delete]");
-        filterChainDefinitionMap.put("/druid/**", "anon");
+        filterChainDefinitionMap.put("/*", "anon");
+//        filterChainDefinitionMap.put("/admin", "roles[admin]");
+//        filterChainDefinitionMap.put("/edit", "perms[delete]");
+//        filterChainDefinitionMap.put("/druid/**", "anon");
         //需要登录访问的资源 , 一般将/**放在最下边
-        filterChainDefinitionMap.put("/**", "authc");
+//        filterChainDefinitionMap.put("/**", "authc");
         bean.setFilterChainDefinitionMap(filterChainDefinitionMap);
         return bean;
     }
@@ -134,7 +133,7 @@ public class ShiroConfig {
         return new LifecycleBeanPostProcessor();
     }
 
-    @Bean("credenttiaMatcher")
+    @Bean
     public CredenttiaMatcher credenttiaMatcher() {
         return new CredenttiaMatcher();
     }
@@ -143,7 +142,7 @@ public class ShiroConfig {
      *  session管理
      * @return
      */
-//    @Bean("sessionManager")
+//    @Bean
 //    public DefaultWebSessionManager sessionManager(){
 //        MySessionManager mySessionManager = new MySessionManager();
 //        mySessionManager.setSessionDAO(redisSessionDAO());
@@ -152,7 +151,7 @@ public class ShiroConfig {
 //        return mySessionManager;
 //    }
 
-    @Bean("cacheManager")
+    @Bean
     protected CacheManager cacheManager() {
         return new MemoryConstrainedCacheManager();
     }

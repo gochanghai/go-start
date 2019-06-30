@@ -33,11 +33,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findByUsername(String userName) {
+    public User findByUsername(String username) {
         User user = new User();
-        user.setUsername(userName);
+        user.setUsername(username);
         LambdaQueryWrapper<User> lambda = new QueryWrapper<User>().lambda();
-        lambda.eq(User::getUsername,userName);
+        lambda.eq(User::getUsername,username);
         return user.selectOne(lambda);
     }
 }
